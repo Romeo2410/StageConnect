@@ -1,0 +1,310 @@
+﻿/* =========================
+   GOOGLE FONT
+========================= */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+/* =========================
+   ROOT (MATCH INDEX)
+========================= */
+:root {
+  --bg: #ffffff;
+  --bg-soft: #f8faff;
+  --bg-soft-2: #f3f6fc;
+  --surface: #ffffff;
+  --line: #dbe3ef;
+  --text: #0f172a;
+  --muted: #64748b;
+  --primary: #4f46e5;
+  --primary-dark: #4338ca;
+}
+
+/* =========================
+   BODY
+========================= */
+body {
+  font-family: "Inter", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 12% 10%, rgba(79, 70, 229, 0.08), transparent 32%),
+    radial-gradient(circle at 88% 14%, rgba(249, 115, 22, 0.07), transparent 28%),
+    linear-gradient(160deg, #ffffff 0%, #f8faff 42%, #ffffff 100%);
+}
+
+/* =========================
+   NAVBAR
+========================= */
+#nav {
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(10px);
+}
+
+.navbar-brand,
+.nav-link,
+.text-custom {
+  color: var(--text) !important;
+}
+
+.navbar-brand {
+  font-weight: 700;
+}
+
+.nav-link {
+  font-weight: 500;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--primary) !important;
+}
+
+.text-secondary-custom {
+  color: var(--muted) !important;
+}
+
+/* =========================
+   PAGE
+========================= */
+.page-shell {
+  padding: 2.2rem 0 3rem;
+}
+
+/* =========================
+   CARD
+========================= */
+.profile-surface {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+}
+
+.profile-surface .card-body {
+  padding: 1.5rem;
+}
+
+/* =========================
+   SECTION HEAD
+========================= */
+.section-head {
+  color: var(--text);
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.section-head i {
+  color: var(--primary);
+}
+
+/* =========================
+   FORM
+========================= */
+.form-label {
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.form-control,
+.form-select {
+  background: #ffffff;
+  color: var(--text);
+  border: 1px solid #cbd5e1;
+  min-height: 46px;
+  border-radius: 12px;
+}
+
+.form-control::placeholder {
+  color: var(--muted);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.2rem rgba(79, 70, 229, 0.15);
+  background: #fff;
+}
+
+.form-select option {
+  color: var(--text);
+}
+
+/* =========================
+   INPUT GROUP
+========================= */
+.input-group-text {
+  background: #eef2ff;
+  color: var(--primary);
+  border: 1px solid var(--line);
+}
+
+/* =========================
+   FILE INPUT
+========================= */
+input[type="file"]::file-selector-button {
+  background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.4rem 0.85rem;
+  margin-right: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background: var(--primary-dark);
+}
+
+/* =========================
+   TEXTAREA
+========================= */
+textarea.form-control {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* =========================
+   CHECKBOX GRID
+========================= */
+.check-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.65rem;
+}
+
+.form-check {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #ffffff;
+  min-height: 44px;
+  padding: 0.6rem 0.75rem 0.6rem 2rem;
+  display: flex;
+  align-items: center;
+  color: var(--text);
+}
+
+.form-check-input {
+  border-color: #94a3b8;
+}
+
+.form-check-input:checked {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.btn-action {
+  min-width: 150px;
+  border-radius: 999px;
+  font-weight: 600;
+  transition: 0.25s ease;
+}
+
+.btn-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.1);
+}
+
+.btn-success {
+  background: var(--primary);
+  border: none;
+}
+
+.btn-success:hover {
+  background: var(--primary-dark);
+}
+
+
+/* =========================
+   VALIDATION
+========================= */
+.invalid-feedback {
+  color: #e11d48;
+}
+
+.form-control.is-invalid,
+.form-select.is-invalid {
+  border-color: #e11d48;
+}
+
+/* =========================
+   PREVIEW BOX
+========================= */
+.preview-box {
+  width: 160px;
+  height: 160px;
+  border-radius: 16px;
+  border: 2px dashed var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  overflow: hidden;
+  position: relative;
+  transition: 0.3s ease;
+}
+
+.preview-box:hover {
+  border-color: var(--primary);
+  background: #eef2ff;
+}
+
+.preview-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+}
+
+.preview-text {
+  position: absolute;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .check-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-action {
+    width: 100%;
+  }
+}
+
+
+.btn-custom {
+  background: var(--primary);
+  color: #fff;
+  border-radius: 999px;
+  font-weight: 600;
+  border: none;
+}
+
+.btn-custom:hover {
+  background: var(--primary-dark);
+  color: #fff;
+}
+
+.btn-outline-danger-custom {
+  border: 2px solid #ef4444;
+  color: #ef4444;
+  background: transparent;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.btn-outline-danger-custom:hover {
+  background: #ef4444;
+  color: #fff;
+}

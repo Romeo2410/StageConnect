@@ -1,0 +1,292 @@
+/* =========================
+   GOOGLE FONT
+========================= */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+/* =========================
+   ROOT (SAME AS INDEX)
+========================= */
+:root {
+  --bg: #ffffff;
+  --bg-soft: #f8faff;
+  --bg-soft-2: #f3f6fc;
+  --surface: #ffffff;
+  --line: #dbe3ef;
+  --text: #0f172a;
+  --muted: #64748b;
+  --primary: #4f46e5;
+  --primary-dark: #4338ca;
+  --accent: #f97316;
+  --shadow-sm: 0 10px 28px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 14px 34px rgba(15, 23, 42, 0.1);
+}
+
+/* =========================
+   BODY
+========================= */
+body {
+  font-family: "Inter", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 12% 10%, rgba(79, 70, 229, 0.08), transparent 32%),
+    radial-gradient(circle at 88% 14%, rgba(249, 115, 22, 0.07), transparent 28%),
+    linear-gradient(160deg, #ffffff 0%, #f8faff 42%, #ffffff 100%);
+}
+
+/* =========================
+   NAVBAR (MATCH INDEX)
+========================= */
+.navbar {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(10px);
+}
+
+.navbar-brand {
+  color: var(--text) !important;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.nav-link {
+  color: var(--muted) !important;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--primary) !important;
+}
+
+/* Logout Button */
+.btn-outline-light {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.btn-outline-light:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* =========================
+   PAGE TITLE
+========================= */
+h2 {
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+/* =========================
+   APPLICATION CARD
+========================= */
+.card {
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  transition: 0.3s ease;
+  background: #fff;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+
+/* =========================
+   CARD TEXT
+========================= */
+.card h5 {
+  font-weight: 700;
+}
+
+.card p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+}
+
+/* =========================
+   BADGES (STATUS)
+========================= */
+.badge {
+  font-size: 0.8rem;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+/* Pending */
+.bg-warning {
+  background: #facc15 !important;
+  color: #000;
+}
+
+/* Accepted */
+.bg-success {
+  background: #22c55e !important;
+}
+
+/* Rejected */
+.bg-danger {
+  background: #ef4444 !important;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.btn {
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: 0.25s ease;
+}
+
+/* View */
+.btn-primary {
+  background: var(--primary);
+  border: none;
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+}
+
+/* Withdraw */
+.btn-danger {
+  background: #ef4444;
+  border: none;
+}
+
+.btn-danger:hover {
+  background: #dc2626;
+}
+
+/* =========================
+   MODAL
+========================= */
+.modal-content {
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-md);
+}
+
+.modal-header {
+  border-bottom: 1px solid var(--line);
+}
+
+.modal-title {
+  font-weight: 700;
+}
+
+/* =========================
+   MODAL IMAGE
+========================= */
+.modal img {
+  border-radius: 12px;
+  max-height: 280px;
+  object-fit: cover;
+}
+
+/* =========================
+   FORM INSIDE MODAL
+========================= */
+.modal input {
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  min-height: 42px;
+}
+
+.modal input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.2rem rgba(79, 70, 229, 0.15);
+}
+
+/* =========================
+   FOOTER (MATCH INDEX STYLE)
+========================= */
+#foot {
+  margin-top: 60px;
+  background: linear-gradient(180deg, var(--bg-soft) 0%, var(--bg-soft-2) 100%);
+  border-top: 1px solid var(--line);
+}
+
+/* Headings */
+#foot h5 {
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+/* Text */
+.text-secondary-custom {
+  color: var(--muted);
+}
+
+/* Links */
+#foot a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+#foot a:hover {
+  color: var(--primary);
+  padding-left: 3px;
+}
+
+/* Divider */
+#foot hr {
+  border-color: var(--line);
+  opacity: 0.7;
+}
+
+/* Social Icons */
+.social-icons a {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  transition: 0.25s ease;
+}
+
+.social-icons a:hover {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+  transform: translateY(-3px);
+}
+
+/* Bottom Text */
+#foot p {
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #foot {
+    text-align: center;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .card {
+    margin-bottom: 15px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+}

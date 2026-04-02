@@ -1,0 +1,269 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+  <meta charset="UTF-8">
+  <title>My Applications | StageConnect</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="css/my-apps.css">
+</head>
+
+<body ng-controller="ctrl" ng-init="loadApps()">
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold">StageConnect</a>
+
+      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="dash-Musician.html">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active">My Applications</a>
+          </li>
+        </ul>
+
+        <button class="btn btn-outline-light ms-3" ng-click="logout()">
+          Logout
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-5">
+
+    <h2>My Applications</h2>
+
+    <div class="row">
+
+      <div class="col-md-6 col-xl-3" ng-repeat="a in apps">
+
+        <div class="card mt-3">
+
+          <div class="p-3">
+
+            <h5>Event ID: {{a.event_id}}</h5>
+            <p>Venue: {{a.venue_email}}</p>
+
+            <p>Applied On: {{a.applied_on | date:'medium'}}</p>
+
+            <!-- STATUS -->
+            <span class="badge" ng-class="{
+              'bg-warning': !a.status || a.status=='Pending',
+              'bg-success': a.status=='Accepted',
+              'bg-danger': a.status=='Rejected'
+            }">
+
+              {{a.status || 'Pending'}}
+
+            </span>
+
+            <div class="mt-3 d-flex gap-2">
+
+              <!-- VIEW BUTTON -->
+              <button class="btn btn-primary btn-sm" ng-click="openModal(a)">
+                View
+              </button>
+
+              <!-- WITHDRAW BUTTON -->
+              <button class="btn btn-danger btn-sm" ng-click="withdraw(a.event_id)">
+                Withdraw
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- VIEW MODAL -->
+  <!-- VIEW EVENT MODAL (FULL DESIGN LIKE MY EVENTS PAGE) -->
+  <div class="modal fade" id="viewModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title">Event Details</h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body p-0">
+
+          <div class="card border-0">
+
+            <!-- IMAGE -->
+            <img ng-src="{{modalData.poster}}" class="img-fluid rounded mx-auto d-block mt-2"
+              style="max-height: 280px; object-fit: cover;">
+
+            <div class="p-3">
+
+              <h4>Event Details</h4>
+
+              <hr>
+
+              <div class="row">
+
+                <div class="col-md-6 mb-3">
+                  <label>Event Title</label>
+                  <input class="form-control" ng-model="modalData.event_title" readonly>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <label>Event Type</label>
+                  <input class="form-control" ng-model="modalData.event_type" readonly>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <label>Date</label>
+                  <input class="form-control" ng-value="modalData.event_date | date:'dd-MM-yyyy'" readonly>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <label>Time</label>
+                  <input class="form-control" ng-model="modalData.event_time" readonly>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <label>Genre</label>
+                  <input class="form-control" ng-model="modalData.required_genre" readonly>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <label>Performers Needed</label>
+                  <input class="form-control" ng-model="modalData.performers_needed" readonly>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <label>Venue Name</label>
+                  <input class="form-control" ng-model="modalData.venue_name" readonly>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <label>City</label>
+                  <input class="form-control" ng-model="modalData.city" readonly>
+                </div>
+
+                <div class="col-md-12 mb-3">
+                  <label>Address</label>
+                  <input class="form-control" ng-model="modalData.full_address" readonly>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <label>Budget (₹)</label>
+                  <input class="form-control" ng-model="modalData.budget" readonly>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <label>Status</label>
+                  <input class="form-control" ng-model="modalData.event_status" readonly>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer id="foot">
+    <div class="footer-bg py-3">
+      <div class="container text-center">
+        <p class="mb-0 text-secondary-custom">
+          &copy; 2026 StageConnect
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    var app = angular.module("app", []);
+
+    app.controller("ctrl", function ($scope, $http) {
+
+      $scope.apps = [];
+      $scope.modalData = {};
+
+        let user = JSON.parse(localStorage.getItem("activeUserM")); 
+        let email = user.email;
+
+      // LOAD
+      $scope.loadApps = function () {
+
+        $http.get("/fetch-my-applications?email=" + email)
+          .then(function (res) {
+            $scope.apps = res.data.map(app => {
+              app.applied_on = new Date(app.applied_on);
+              return app;
+            });
+          });
+
+      };
+
+      // OPEN MODAL
+      $scope.openModal = function (a) {
+
+        let eventId = a.event_id;
+
+        $http.get("/get-event-details?event_id=" + eventId)
+          .then(function (res) {
+
+            $scope.modalData = res.data;
+
+            var modalEl = document.getElementById("viewModal");
+            var modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+            modal.show();
+
+          })
+          .catch(function (err) {
+            console.log(err);
+          });
+
+      };
+
+      // WITHDRAW APPLICATION
+      $scope.withdraw = function (id) {
+
+        $http.post("/withdraw-application", {
+          id: id,
+          email: localStorage.getItem("activeUserM")
+        })
+          .then(function (res) {
+
+            alert(res.data);
+            $scope.loadApps();
+
+          });
+
+      };
+
+      // LOGOUT
+      $scope.logout = function () {
+        localStorage.clear();
+        window.location.href = "index.html";
+      };
+
+    });
+  </script>
+</body>
+
+</html>

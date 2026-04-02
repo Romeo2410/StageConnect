@@ -1,0 +1,445 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Musician Profile | StageConnect</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    referrerpolicy="no-referrer" />
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <link rel="stylesheet" href="css/musician-profile.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg sticky-top" id="nav">
+    <div class="container">
+      <a class="navbar-brand" href="dash-Musician.html">StageConnect</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#profileNavbar"
+        aria-controls="profileNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="profileNavbar">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="dash-Musician.html">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="events.html">Browse Events</a></li>
+          <li class="nav-item"><a class="nav-link" href="applications.html">My Applications</a></li>
+          <li class="nav-item"><a class="nav-link active" href="musician-profile.html">Profile</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-shell">
+    <div class="container">
+      <header class="mb-4">
+        <p class="text-secondary-custom mb-1">Musician Workspace</p>
+        <h1 class="h2 text-custom mb-1">Musician Profile</h1>
+        <p class="text-secondary-custom mb-0">Manage your professional information</p>
+      </header>
+
+      <div class="card profile-surface">
+        <div class="card-body">
+          <form id="musicianProfileForm" method="post" action="/save-musician-profile" enctype="multipart/form-data">
+
+            <!-- PRIMARY KEY -->
+            <div class="mb-4">
+              <h2 class="section-head"><i class="fa-solid fa-key"></i>Primary Key</h2>
+              <div class="row g-3 align-items-end email-row">
+                <div class="col-lg-8">
+                  <label for="emailId" class="form-label">Email ID</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+
+                    <!-- ✅ ONLY CHANGE -->
+                    <input type="email" class="form-control" id="emailId" name="email" placeholder="Login email"
+                      readonly required>
+
+                    <div class="invalid-feedback">Email is required.</div>
+                  </div>
+                </div>
+                <div class="col-lg-4 d-grid">
+                  <button type="button" id="searchBtn" class="btn btn-custom btn-action">
+                    <i class="fa-solid fa-magnifying-glass me-2"></i>Search Profile
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- BASIC INFO -->
+            <div class="mb-4">
+              <h2 class="section-head"><i class="fa-solid fa-user"></i>Basic Information</h2>
+              <div class="row g-3">
+
+                <div class="col-md-6">
+                  <label for="stageName" class="form-label">Stage Name</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fa-solid fa-microphone"></i></span>
+
+                    <!-- ✅ -->
+                    <input type="text" class="form-control" id="stageName" name="stage_name"
+                      placeholder="Enter stage name" required>
+
+                    <div class="invalid-feedback">Stage Name is required.</div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="genre" class="form-label">Genre</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fa-solid fa-music"></i></span>
+
+                    <!-- ✅ -->
+                    <select class="form-select" id="genre" name="genre" multiple required>
+                      <option value="Bollywood">Bollywood</option>
+                      <option value="Classical">Classical</option>
+                      <option value="Rock">Rock</option>
+                      <option value="Pop">Pop</option>
+                      <option value="Jazz">Jazz</option>
+                      <option value="Folk">Folk</option>
+                      <option value="EDM">EDM</option>
+                      <option value="Hip-Hop">Hip-Hop</option>
+                    </select>
+
+                    <div class="invalid-feedback">Please select at least one genre.</div>
+                  </div>
+                  <div class="form-text">Hold Ctrl (Windows) or Cmd (Mac) to select multiple genres.</div>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="experience" class="form-label">Experience (Years)</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fa-solid fa-award"></i></span>
+
+                    <!-- ✅ -->
+                    <input type="number" class="form-control" id="experience" name="experience" placeholder="e.g. 5"
+                      min="0" required>
+
+                    <div class="invalid-feedback">Experience is required.</div>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <label for="bio" class="form-label">Bio</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fa-solid fa-pen"></i></span>
+
+                    <!-- ✅ -->
+                    <textarea class="form-control" id="bio" name="bio" placeholder="Tell us about your performances"
+                      required></textarea>
+
+                    <div class="invalid-feedback">Bio is required.</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- CONTACT -->
+            <div class="mb-4">
+              <h2 class="section-head"><i class="fa-solid fa-address-book"></i>Contact Information</h2>
+              <div class="row g-3">
+
+                <div class="col-md-6">
+                  <label for="phone" class="form-label">Phone</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
+
+                    <!-- ✅ -->
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter phone number"
+                      required>
+
+                    <div class="invalid-feedback">Phone is required.</div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="city" class="form-label">City</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fa-solid fa-city"></i></span>
+
+                    <!-- ✅ -->
+                    <input type="text" class="form-control" id="city" name="city" placeholder="Enter city" required>
+
+                    <div class="invalid-feedback">City is required.</div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="state" class="form-label">State</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fa-solid fa-location-dot"></i></span>
+
+                    <!-- ✅ -->
+                    <select class="form-select" id="state" name="state" required>
+                      <option value="" selected disabled>Select state</option>
+                      <option>Andhra Pradesh</option>
+                      <option>Arunachal Pradesh</option>
+                      <option>Assam</option>
+                      <option>Bihar</option>
+                      <option>Chhattisgarh</option>
+                      <option>Goa</option>
+                      <option>Gujarat</option>
+                      <option>Haryana</option>
+                      <option>Himachal Pradesh</option>
+                      <option>Jharkhand</option>
+                      <option>Karnataka</option>
+                      <option>Kerala</option>
+                      <option>Madhya Pradesh</option>
+                      <option>Maharashtra</option>
+                      <option>Manipur</option>
+                      <option>Meghalaya</option>
+                      <option>Mizoram</option>
+                      <option>Nagaland</option>
+                      <option>Odisha</option>
+                      <option>Punjab</option>
+                      <option>Rajasthan</option>
+                      <option>Sikkim</option>
+                      <option>Tamil Nadu</option>
+                      <option>Telangana</option>
+                      <option>Tripura</option>
+                      <option>Uttar Pradesh</option>
+                      <option>Uttarakhand</option>
+                      <option>West Bengal</option>
+                      <option>Andaman and Nicobar Islands</option>
+                      <option>Chandigarh</option>
+                      <option>Dadra and Nagar Haveli and Daman and Diu</option>
+                      <option>Delhi</option>
+                      <option>Jammu and Kashmir</option>
+                      <option>Ladakh</option>
+                      <option>Lakshadweep</option>
+                      <option>Puducherry</option>
+                    </select>
+
+                    <div class="invalid-feedback">Please select a state.</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- PROFESSIONAL -->
+            <div class="mb-4">
+              <h2 class="section-head"><i class="fa-solid fa-briefcase"></i>Professional Details</h2>
+              <div class="row g-3">
+
+                <div class="col-md-6">
+                  <label for="fee" class="form-label">Performance Fee</label>
+                  <div class="input-group">
+                    <span class="input-group-text">₹</span>
+
+                    <!-- ✅ -->
+                    <input type="number" class="form-control" id="fee" name="fee" placeholder="Enter fee" min="0"
+                      required>
+
+                    <div class="invalid-feedback">Performance Fee is required.</div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label d-block">Available For</label>
+                  <div class="check-grid">
+
+                    <!-- ✅ -->
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="available_for" value="Weddings"
+                        id="weddings">
+                      <label class="form-check-label" for="weddings">Weddings</label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="available_for" value="Clubs" id="clubs">
+                      <label class="form-check-label" for="clubs">Clubs</label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="available_for" value="Festivals"
+                        id="festivals">
+                      <label class="form-check-label" for="festivals">Festivals</label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="available_for" value="Private Events"
+                        id="privateEvents">
+                      <label class="form-check-label" for="privateEvents">Private Events</label>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- MEDIA -->
+            <div class="mb-4">
+              <h2 class="section-head"><i class="fa-solid fa-photo-film"></i>Media Section</h2>
+              <div class="row g-3">
+
+                <div class="col-md-6">
+                  <label for="profileImage" class="form-label">Profile Image</label>
+
+                  <div class="input-group">
+                    <span class="input-group-text">
+                      <i class="fa-solid fa-image"></i>
+                    </span>
+
+                    <input class="form-control" type="file" id="profileImage" name="profile_image" accept="image/*"
+                      onchange="preview(event)" required>
+
+                    <div class="invalid-feedback">Please upload a profile image.</div>
+                  </div>
+
+                  <div class="preview-box mt-3 text-center">
+                    <img id="prev" src="" alt="Preview">
+                    <p class="preview-text"></p>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="youtubeLink" class="form-label">YouTube Link</label>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fa-brands fa-youtube"></i></span>
+
+                    <!-- ✅ -->
+                    <input type="text" class="form-control" id="youtubeLink" name="youtube_link"
+                      placeholder="https://youtube.com/..." required>
+
+                    <div class="invalid-feedback">YouTube link is required.</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- BUTTONS -->
+            <div class="text-center mt-4">
+              <div class="d-flex flex-wrap justify-content-center gap-2 gap-md-3">
+                <button type="submit" class="btn btn-action btn-custom">Save Profile</button>
+
+                <button type="submit" formaction="/update-musician-profile" class="btn btn-action btn-custom">
+                  Update
+                </button>
+
+                <button type="button" id="deleteBtn" class="btn btn-action btn-outline-danger-custom">
+                  Delete Profile
+                </button>
+              </div>
+            </div>
+            <input type="hidden" name="oldimage" id="oldimage">
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    function preview(e) {
+      let file = e.target.files[0];
+
+      if (file) {
+        let img = document.getElementById("prev");
+        img.src = URL.createObjectURL(file);
+        img.style.display = "block";
+      }
+    }
+    $(document).ready(function () {
+
+      // Auto email from login
+      let activeUser = JSON.parse(localStorage.getItem("activeUserM") || "{}");
+
+      $("#emailId").val(activeUser.email);
+
+      // -------- FETCH PROFILE --------
+      $("#searchBtn").click(function () {
+
+        let email = $("#emailId").val();
+
+        if (email === "") {
+          alert("Enter Email First");
+          return;
+        }
+
+        $.ajax({
+          type: "get",
+          url: "/fetch-musician-profile",
+          data: { email: email }
+        })
+          .done(function (res) {
+
+            if (res.length === 0) {
+              alert("No Profile Found");
+              return;
+            }
+
+            let d = res[0];
+            $("#oldimage").val(d.profile_image);
+            $("#stageName").val(d.stage_name);
+
+            if (d.genre) {
+              $("#genre").val(d.genre.split(","));
+            }
+
+            $("#experience").val(d.experience);
+            $("#bio").val(d.bio);
+            $("#phone").val(d.phone);
+            $("#city").val(d.city);
+            $("#state").val(d.state);
+            $("#fee").val(d.fee);
+            $("#youtubeLink").val(d.youtube_link);
+
+            // checkbox
+            $(".form-check-input").prop("checked", false);
+
+            if (d.available_for) {
+              let arr = d.available_for.split(",");
+              $(".form-check-input").each(function () {
+                if (arr.includes($(this).val())) {
+                  $(this).prop("checked", true);
+                }
+              });
+            }
+
+            $("#prev").attr("src", d.profile_image).show();
+
+          })
+          .fail(function () {
+            alert("Error fetching profile");
+          });
+
+      });
+      // -------- DELETE PROFILE --------
+      $("#deleteBtn").click(function () {
+
+        let email = $("#emailId").val();
+
+        if (email === "") {
+          alert("No email found");
+          return;
+        }
+
+        if (!confirm("Are you sure you want to delete your profile?")) {
+          return;
+        }
+
+        $.ajax({
+          type: "post",
+          url: "/delete-musician-profile",
+          data: { email: email }
+        })
+          .done(function (res) {
+            alert(res);
+          })
+          .fail(function () {
+            alert("Error deleting profile");
+          });
+
+      });
+
+    });
+  </script>
+</body>
+
+</html>

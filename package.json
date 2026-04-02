@@ -1,0 +1,41 @@
+{
+  "name": "stageconnect",
+  "version": "1.0.0",
+  "description": "StageConnect - Full Stack Event Management & Booking Platform",
+  "main": "server.js",
+  "type": "commonjs",
+
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+
+  "keywords": [
+    "event-management",
+    "booking-system",
+    "nodejs",
+    "express",
+    "mysql",
+    "full-stack",
+    "stageconnect"
+  ],
+
+  "author": "Rupak Gur",
+  "license": "ISC",
+
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.9.0",
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2",
+    "express-basic-auth": "^1.2.1",
+    "express-fileupload": "^1.5.2",
+    "fileupload": "^1.0.0",
+    "mysql2": "^3.15.3",
+    "nodemailer": "^7.0.7"
+  },
+
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

@@ -1,0 +1,754 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="stageApp">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StageConnect |Elevating Artists & Venues Together</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/index.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body>
+  <button id="goToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <nav class="navbar navbar-expand-lg fixed-top" id="nav">
+    <div class="container" id="ho">
+      <a class="navbar-brand" href="#">StageConnect</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#os">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#as">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#ru">Reach Us</a></li>
+        </ul>
+
+        <div class="d-flex flex-column flex-sm-row gap-2 mt-2 mt-lg-0">
+          <button type="button" class="btn btn-auth btn-signup" data-bs-toggle="modal"
+            data-bs-target="#Signup">Signup</button>
+          <button type="button" class="btn btn-auth btn-login" data-bs-toggle="modal"
+            data-bs-target="#Login">Login</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero-section">
+    <div class="container py-5">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+          <span class="hero-badge">Elevating Artists & Venues Together</span>
+          <h1 class="hero-title mt-3">Where Talent Meets The <span>Perfect Stage</span></h1>
+          <p class="hero-text mt-3">StageConnect helps musicians discover live opportunities while venues find the right
+            talent quickly for each event.</p>
+          <div class="d-flex flex-column flex-sm-row gap-3 mt-4">
+            <button class="btn btn-custom px-4" data-bs-toggle="modal" data-bs-target="#Signup">Join as
+              Musician</button>
+            <button class="btn btn-auth btn-signup px-4" data-bs-toggle="modal" data-bs-target="#Signup">Register as
+              Venue</button>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="hero-card">
+            <h5 class="mb-3">Platform Highlights</h5>
+            <div class="row g-3">
+              <div class="col-6">
+                <div class="mini-stat">
+                  <h4>500+</h4>
+                  <p>Musicians</p>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="mini-stat">
+                  <h4>150+</h4>
+                  <p>Venues</p>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="mini-stat">
+                  <h4>1200+</h4>
+                  <p>Events Hosted</p>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="mini-stat">
+                  <h4>3500+</h4>
+                  <p>Applications</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="stats-section py-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-6 col-lg-3">
+          <article class="stat-card">
+            <div class="value" data-counter="500">500+</div>
+            <p class="label">Musicians</p>
+          </article>
+        </div>
+        <div class="col-6 col-lg-3">
+          <article class="stat-card">
+            <div class="value" data-counter="150">150+</div>
+            <p class="label">Venues</p>
+          </article>
+        </div>
+        <div class="col-6 col-lg-3">
+          <article class="stat-card">
+            <div class="value" data-counter="1200">1200+</div>
+            <p class="label">Events Hosted</p>
+          </article>
+        </div>
+        <div class="col-6 col-lg-3">
+          <article class="stat-card">
+            <div class="value" data-counter="3500">3500+</div>
+            <p class="label">Applications Sent</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Signup Modal -->
+  <div class="modal fade" id="Signup" tabindex="-1" aria-labelledby="signupLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content modal-surface">
+        <div class="modal-header border-0">
+          <h1 class="modal-title fs-5" id="signupLabel">Create Your StageConnect Account</h1>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form>
+          <div class="modal-body pt-0">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="txtName" placeholder="Name" required>
+              <label for="txtName">Full Name</label>
+            </div>
+
+            <div class="form-floating mb-1">
+              <input type="email" class="form-control" id="txtEmail" name="txtEmail" placeholder="Email" required>
+              <label for="txtEmail">Email address</label>
+            </div>
+            <div class="alert1" id="validsignup">Enter a valid email.</div>
+
+            <div class="input-group mb-3">
+              <div class="form-floating flex-grow-1">
+                <input type="password" class="form-control" id="txtPwd" name="txtPwd" placeholder="Password"
+                  minlength="8" required>
+                <label for="txtPwd">Password</label>
+              </div>
+              <span class="input-group-text eye-icon"><i class="fa-regular fa-eye-slash" id="eye"></i></span>
+            </div>
+
+            <div class="mb-3">
+              <label for="utype" class="form-label">User Type</label>
+              <select class="form-select" id="utype">
+                <option value="" selected disabled>Select</option>
+                <option value="Musician">Musician</option>
+                <option value="Venue">Venue</option>
+              </select>
+            </div>
+
+            <button class="btn btn-custom w-100" type="button" id="signupbtn" disabled>Sign Up</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Login Modal -->
+  <div class="modal fade" id="Login" tabindex="-1" aria-labelledby="loginLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content modal-surface">
+        <div class="modal-header border-0">
+          <h1 class="modal-title fs-5" id="loginLabel">Login to StageConnect</h1>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form>
+          <div class="modal-body pt-0">
+            <div class="form-floating mb-1">
+              <input type="email" class="form-control" id="txtLogemail" name="txtLogemail" placeholder="Email" required>
+              <label for="txtLogemail">Email address</label>
+            </div>
+            <div class="alert1" id="validlog">Enter a valid email.</div>
+
+            <div class="input-group mb-3">
+              <div class="form-floating flex-grow-1">
+                <input type="password" class="form-control" id="txtLogpwd" name="txtLogpwd" placeholder="Password"
+                  minlength="8" required>
+                <label for="txtLogpwd">Password</label>
+              </div>
+              <span class="input-group-text eye-icon"><i class="fa-regular fa-eye-slash" id="eyep"></i></span>
+            </div>
+
+            <button class="btn btn-custom w-100" type="button" id="loginbtn" disabled>Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Our Services -->
+  <section class="py-5" id="os">
+    <div class="container py-4">
+      <h2 class="section-title text-center mb-4">Our Services</h2>
+      <div class="row g-4">
+        <div class="col-sm-6 col-lg-3">
+          <div class="card service-card h-100">
+            <img src="images/publish.jpg" class="card-img-top" alt="Publish events">
+            <div class="card-body">
+              <h5 class="card-title">Publish Events</h5>
+              <p class="card-text">Venues can post open mics, paid gigs, and live music nights in minutes.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="card service-card h-100">
+            <img src="images/discover.jpg" class="card-img-top" alt="Discover live gigs">
+            <div class="card-body">
+              <h5 class="card-title">Discover Live Gigs</h5>
+              <p class="card-text">Musicians can find relevant local opportunities based on their style and
+                availability.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="card service-card h-100">
+            <img src="images/performer.jpg" class="card-img-top" alt="Apply to perform">
+            <div class="card-body">
+              <h5 class="card-title">Apply to Perform</h5>
+              <p class="card-text">Apply with one click and get selected for events that match your profile.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="card service-card h-100">
+            <img src="images/network.jpg" class="card-img-top" alt="Build network">
+            <div class="card-body">
+              <h5 class="card-title">Build Your Music Network</h5>
+              <p class="card-text">Create long-term collaborations with venues, artists, and event organizers.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-5" id="how-it-works">
+    <div class="container py-4">
+      <h2 class="section-title text-center mb-4">How It Works</h2>
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <article class="flow-card h-100 p-4">
+            <h5 class="mb-3">For Musicians</h5>
+            <div class="flow-item">
+              <div class="flow-icon"><i class="fa-solid fa-user-pen"></i></div>
+              <h6>Create Profile</h6>
+              <p class="mb-0">Build your profile with genres, portfolio, and performance details.</p>
+            </div>
+            <div class="flow-item mt-3">
+              <div class="flow-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+              <h6>Browse Events</h6>
+              <p class="mb-0">Discover suitable gigs and shortlist opportunities that match your style.</p>
+            </div>
+            <div class="flow-item mt-3">
+              <div class="flow-icon"><i class="fa-solid fa-guitar"></i></div>
+              <h6>Apply & Perform</h6>
+              <p class="mb-0">Apply and perform once selected by venues.</p>
+            </div>
+          </article>
+        </div>
+        <div class="col-lg-6">
+          <article class="flow-card h-100 p-4">
+            <h5 class="mb-3">For Venues</h5>
+            <div class="flow-item">
+              <div class="flow-icon"><i class="fa-solid fa-calendar-plus"></i></div>
+              <h6>Post Event</h6>
+              <p class="mb-0">Create listings with date, genre, budget, and venue requirements.</p>
+            </div>
+            <div class="flow-item mt-3">
+              <div class="flow-icon"><i class="fa-solid fa-list-check"></i></div>
+              <h6>Review Applications</h6>
+              <p class="mb-0">Compare musicians by profile, quality, and event fit.</p>
+            </div>
+            <div class="flow-item mt-3">
+              <div class="flow-icon"><i class="fa-solid fa-microphone-lines"></i></div>
+              <h6>Book Talent</h6>
+              <p class="mb-0">Finalize performers and host engaging live events.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-5" id="as">
+    <div class="container py-4">
+      <h2 class="section-title text-center mb-4">About StageConnect</h2>
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <article class="about-card h-100 p-4">
+            <h5>Mission</h5>
+            <p class="mb-0 text-muted-custom">Enable musicians and venues to connect faster through one reliable booking
+              workflow.</p>
+          </article>
+        </div>
+        <div class="col-lg-4">
+          <article class="about-card h-100 p-4">
+            <h5>Vision</h5>
+            <p class="mb-0 text-muted-custom">Strengthen live music culture with transparent and efficient event
+              coordination.</p>
+          </article>
+        </div>
+        <div class="col-lg-4">
+          <article class="about-card h-100 p-4">
+            <h5>Value</h5>
+            <p class="mb-0 text-muted-custom">Reduce booking friction and create better opportunities for performers and
+              venues.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-5" id="developers">
+    <div class="container py-4">
+      <h2 class="section-title text-center mb-4">About the Developers</h2>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <article class="developer-card h-100">
+            <div class="dev-inner p-4">
+              <img src="images/Rupak.JPG" alt="Rupak" class="developer-img mb-3">
+              <h5 class="mb-2">Rupak Gur</h5>
+              <p class="mb-2 text-muted-custom">Final Year Masters Student at Maharaja Ranjit Singh Punjab Technical
+                University</p>
+              <p class="mb-0 text-muted-custom">Certified Full Stack Developer focused on authentication flow, backend
+                integration, and project architecture.</p>
+              <div class="d-flex justify-content-center gap-2 social-icons social-dev mt-3">
+                <a href="https://www.linkedin.com/in/rupak-gur-852916307" target="_blank" aria-label="LinkedIn"><i
+                    class="fa-brands fa-linkedin-in"></i></a>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <article class="developer-card h-100">
+            <div class="dev-inner p-4">
+              <img src="images/deepinder.jpeg" alt="deepinder" class="developer-img mb-3">
+              <h5 class="mb-2">Deepinder Kaur</h5>
+              <p class="mb-2 text-muted-custom">Final Year Masters Student at Maharaja Ranjit Singh Punjab Technical
+                University</p>
+              <p class="mb-0 text-muted-custom">Frontend Developer responsible for responsive UI design, section
+                layouts,
+                and user experience improvements.</p>
+              <div class="d-flex justify-content-center gap-2 social-icons social-dev mt-3">
+                <a href="https://www.linkedin.com/in/deepinder-kaur-775b7b2a3?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+                  aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <article class="developer-card h-100">
+            <div class="dev-inner p-4">
+              <img src="images/Bhupinder.JPG.jpeg" alt="Bhupinder Singh" class="developer-img mb-3">
+              <h5 class="mb-2">Bhupinder Singh</h5>
+              <p class="mb-2 text-muted-custom">Final Year Masters Student at Maharaja Ranjit Singh Punjab Technical
+                University</p>
+              <p class="mb-0 text-muted-custom">Project & Testing Lead handling feature validation, documentation, and
+                final project presentation readiness.</p>
+              <div class="d-flex justify-content-center gap-2 social-icons social-dev mt-3">
+                <a href="https://www.linkedin.com/in/bhupinder-singh-047a093bb?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
+                  aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reach Us -->
+  <section class="py-5" id="ru">
+    <div class="container py-4">
+      <h2 class="section-title text-center mb-4">Reach Us</h2>
+      <div class="row g-4 align-items-stretch">
+        <div class="col-lg-6">
+          <iframe class="map-frame"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3449.1799703258816!2d74.9242774!3d30.174852599999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39172d0bd023ecd3%3A0x98b0adf19ab47296!2sMaharaja%20Ranjit%20Singh%20Punjab%20Technical%20University!5e0!3m2!1sen!2sin!4v1774476217370!5m2!1sen!2sin"
+            height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="feedback-form h-100 p-4">
+            <h5 class="mb-3">Send Feedback</h5>
+            <form id="feedbackForm">
+              <div class="mb-3">
+                <label for="feedname" class="form-label">Name</label>
+                <input type="text" class="form-control" id="feedname" name="feedname" required>
+              </div>
+              <div class="mb-3">
+                <label for="feedbackRole" class="form-label">Role</label>
+                <select class="form-select" id="feedbackRole" name="feedbackRole" required>
+                  <option value="" selected disabled>Select your role</option>
+                  <option value="Musician">Musician</option>
+                  <option value="Venue">Venue</option>
+                  <option value="Visitor">Visitor</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="Cont" class="form-label">Contact</label>
+                <input type="text" class="form-control" id="Cont" name="Cont" required>
+              </div>
+              <div class="mb-3">
+                <label for="floatingTextarea" class="form-label">Message</label>
+                <textarea class="form-control" rows="6" id="floatingTextarea" name="Feedback" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-custom" id="FeedBtn">Send Feedback</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-5" id="testimonials">
+    <div class="container py-4">
+      <h2 class="section-title text-center mb-4">Testimonials</h2>
+      <div class="testimonial-marquee">
+        <!-- testimonial cards -->
+        <div class="testimonial-track" ng-controller="TestimonialCtrl">
+
+          <article class="testimonial-card testimonial-item p-4" ng-if="testimonials.length === 0">
+            <h6 class="mb-3">No Feedback Yet</h6>
+            <p class="mb-0 text-muted-custom">
+              Be the first to leave your feedback!
+            </p>
+          </article>
+
+          <article class="testimonial-card testimonial-item p-4" ng-repeat="fb in testimonials">
+            <h6 class="mb-3">{{fb.name}} ({{fb.role}})</h6>
+            <p class="mb-0 text-muted-custom">"{{fb.message}}"</p>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="foot" class="pt-5 pb-3">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-sm-6 col-lg-3">
+          <h5>About StageConnect</h5>
+          <p class="mb-0">StageConnect connects emerging musicians with growing venues.
+            We help new talent find their stage while giving venues fresh voices to shine.
+            Together, we create opportunities to grow.</p>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <h5>Quick Links</h5>
+          <p><a href="#">Home</a></p>
+          <p><a href="#os">Services</a></p>
+          <p><a href="#as">About</a></p>
+          <p><a href="#ru">Reach Us</a></p>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <h5>Platform</h5>
+          <p><a href="#how-it-works">How It Works</a></p>
+          <p><a href="#testimonials">Testimonials</a></p>
+          <p><a href="#developers">Developers</a></p>
+          <p><a href="#" data-bs-toggle="modal" data-bs-target="#Signup">Create Account</a></p>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <h5>Contact Info</h5>
+          <p class="mb-1"><a href="tel:6239110015" class="text-custom">6239110015</a></p>
+          <p class="mb-1"><a href="mailto:gurromeo30@gmail.com" class="text-custom">gurromeo30@gmail.com</a></p>
+          <p class="mb-2">Bathinda, Punjab, India</p>
+          <h6 class="footer-social-title">Follow Us</h6>
+          <div class="d-flex gap-3 social-icons mt-3">
+            <a href="https://x.com/rupak_gur" target="_blank" aria-label="Twitter"><i
+                class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://www.instagram.com/rupakgurrr" target="_blank" aria-label="Instagram"><i
+                class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/rupak-gur-852916307" target="_blank" aria-label="LinkedIn"><i
+                class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://github.com/Romeo2410" target="_blank" aria-label="GitHub"><i
+                class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+      <hr class="my-4">
+      <p class="text-center mb-0">© 2026 StageConnect</p>
+    </div>
+  </footer>
+  <script>
+    let goToTopBtn = null;
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    window.onscroll = function () {
+      if (!goToTopBtn) return;
+      if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        goToTopBtn.style.display = "block";
+      } else {
+        goToTopBtn.style.display = "none";
+      }
+    };
+    goToTopBtn = document.getElementById("goToTopBtn");
+    $(document).ready(function () {
+      // Password visibility toggles
+      $("#eye").click(function () {
+        const pwd = $("#txtPwd");
+        const icon = $("#eye");
+        if (pwd.prop("type") === "password") {
+          pwd.prop("type", "text");
+          icon.addClass("fa-eye").removeClass("fa-eye-slash");
+        } else {
+          pwd.prop("type", "password");
+          icon.addClass("fa-eye-slash").removeClass("fa-eye");
+        }
+      });
+
+      $("#eyep").click(function () {
+        const pwd = $("#txtLogpwd");
+        const icon = $("#eyep");
+        if (pwd.prop("type") === "password") {
+          pwd.prop("type", "text");
+          icon.addClass("fa-eye").removeClass("fa-eye-slash");
+        } else {
+          pwd.prop("type", "password");
+          icon.addClass("fa-eye-slash").removeClass("fa-eye");
+        }
+      });
+
+      // Email validation
+      const exp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      $("#txtEmail").on("keyup blur", function () {
+        const email = $(this).val().trim();
+        const valid = exp.test(email);
+        if (valid) {
+          $("#validsignup").addClass("alert1").removeClass("alert2").text("Valid Email");
+          $("#signupbtn").prop("disabled", false);
+        } else {
+          $("#validsignup").addClass("alert2").removeClass("alert1").text("Invalid Email");
+          $("#signupbtn").prop("disabled", true);
+        }
+      });
+
+      $("#txtLogemail").on("keyup blur", function () {
+        const email = $(this).val().trim();
+        const valid = exp.test(email);
+        if (valid) {
+          $("#validlog").addClass("alert1").removeClass("alert2").text("Valid Email");
+          $("#loginbtn").prop("disabled", false);
+        } else {
+          $("#validlog").addClass("alert2").removeClass("alert1").text("Invalid Email");
+          $("#loginbtn").prop("disabled", true);
+        }
+      });
+
+      // Signup AJAX
+      $("#signupbtn").click(function () {
+        const name = $("#txtName").val().trim();
+        const email = $("#txtEmail").val().trim();
+        const pwd = $("#txtPwd").val();
+        const type = $("#utype").val();
+
+        if (name === "" || email === "" || pwd === "" || !type) {
+          alert("Please fill in all signup fields.");
+          return false;
+        }
+
+        $.ajax({
+          type: "get",
+          url: "/signup",
+          data: { txtName: name, txtEmail: email, txtPwd: pwd, utype: type }
+        })
+          .done(function (response) { alert(response); })
+          .fail(function () { alert("Server error"); });
+      });
+
+      // Login AJAX
+      $("#loginbtn").click(function () {
+        const email = $("#txtLogemail").val().trim();
+        const pwd = $("#txtLogpwd").val();
+
+        if (email === "" || pwd === "") {
+          alert("Please fill in Email and Password.");
+          return false;
+        }
+
+        $.ajax({
+          type: "get",
+          url: "/login",
+          data: { txtLogemail: email, txtLogpwd: pwd }
+        })
+          .done(function (response) {
+
+            if (response.role == "Musician") {
+
+              // remove venue if exists (important)
+              localStorage.removeItem("activeUserV");
+
+              // store musician email
+              localStorage.setItem("activeUserM", JSON.stringify({
+                name: response.name,
+                email: response.email
+              }));
+
+              location.href = "dash-Musician.html";
+
+            }
+            else if (response.role == "Venue") {
+
+              // remove musician if exists (important)
+              localStorage.removeItem("activeUserM");
+
+              // store venue email
+              localStorage.setItem("activeUserV", JSON.stringify({
+                name: response.name,
+                email: response.email
+              }));
+
+              location.href = "dash-Venue.html";
+
+            }
+            else {
+              alert("Invalid User");
+            }
+
+          })
+          .fail(function () { alert("Server error"); });
+      });
+
+      // Feedback AJAX
+      $("#FeedBtn").click(function (e) {
+        e.preventDefault();
+
+        var name = $("#feedname").val();
+        var contact = $("#Cont").val();
+        var feedback = $("#floatingTextarea").val();
+        var role = $("#feedbackRole").val();
+
+        if (name === "" || contact === "" || feedback === "" || !role) {
+          alert("Please fill in all fields.");
+          return false;
+        }
+
+        $.ajax({
+          type: "post",
+          url: "/SendFeedback",
+          data: {
+            feedname: name,
+            Cont: contact,
+            Feedback: feedback,
+            feedbackRole: role
+          }
+        })
+          .done(function (response) {
+            alert(response);
+            $("#feedbackForm")[0].reset();
+          })
+          .fail(function (err) {
+            alert("Server error");
+            console.error(err);
+          });
+      });
+
+      // Navbar transition on scroll 
+      const nav = document.getElementById("nav");
+      const updateNav = () => {
+        if (window.scrollY > 30) nav.classList.add("scrolled");
+        else nav.classList.remove("scrolled");
+      };
+      updateNav();
+      window.addEventListener("scroll", updateNav);
+
+      // Stats counter animation
+      document.querySelectorAll("[data-counter]").forEach((el) => {
+        const target = parseInt(el.getAttribute("data-counter"), 10);
+        let current = 0;
+        const step = Math.max(1, Math.floor(target / 80));
+
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            el.textContent = target + "+";
+            clearInterval(timer);
+          } else {
+            el.textContent = current + "+";
+          }
+        }, 20);
+      });
+    });
+
+    var app = angular.module("stageApp", []);
+
+    app.controller("TestimonialCtrl", function ($scope, $http) {
+
+      $scope.testimonials = [];
+
+      $http.get("/get-feedbacks")
+        .then(function (res) {
+          $scope.testimonials = res.data;
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
+
+    });
+    // 3D Tilt for developer cards
+    document.querySelectorAll(".dev-inner").forEach(card => {
+
+      card.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect();
+
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = -(y - centerY) / 25;
+        const rotateY = (x - centerX) / 25;
+
+        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+      });
+
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
+      });
+
+    });
+  </script>
+  <a href="https://wa.me/916239110015" target="_blank" id="wa-btn">
+    <i class="fa-brands fa-square-whatsapp" style="color: rgb(99, 230, 190);"></i>
+  </a>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

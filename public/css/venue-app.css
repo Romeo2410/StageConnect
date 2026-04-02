@@ -1,0 +1,276 @@
+/* ================= GOOGLE FONT ================= */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+
+/* ================= ROOT THEME ================= */
+:root {
+  --bg: #ffffff;
+  --bg-soft: #f8faff;
+  --bg-soft-2: #f3f6fc;
+  --surface: #ffffff;
+  --line: #dbe3ef;
+  --text: #0f172a;
+  --muted: #64748b;
+  --primary: #4f46e5;
+  --primary-dark: #4338ca;
+  --accent: #f97316;
+  --shadow-sm: 0 10px 28px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 14px 34px rgba(15, 23, 42, 0.1);
+}
+
+/* ================= BODY ================= */
+body {
+  font-family: "Inter", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 12% 10%, rgba(79, 70, 229, 0.08), transparent 32%),
+    radial-gradient(circle at 88% 14%, rgba(249, 115, 22, 0.07), transparent 28%),
+    linear-gradient(160deg, #ffffff 0%, #f8faff 42%, #ffffff 100%);
+  padding-top: 90px;
+}
+
+/* ================= NAVBAR ================= */
+#nav {
+  background: rgba(255, 255, 255, 0.85);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(10px);
+  padding: 12px 0;
+}
+
+.navbar-brand {
+  font-weight: 800;
+  color: var(--text) !important;
+}
+
+.nav-link {
+  font-weight: 600;
+  color: var(--text) !important;
+  position: relative;
+}
+
+/* underline animation */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: 2px;
+  height: 2px;
+  background: var(--primary);
+  transform: scaleX(0);
+  transition: 0.3s;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--primary) !important;
+}
+
+/* ================= HERO ================= */
+.hero-section {
+  padding: 10px 0 100px;
+  text-align: center;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+  color: #3730a3;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin-top: 10px;
+}
+
+.hero-title span {
+  background: linear-gradient(90deg, var(--primary), #2563eb);
+
+  /* Standard property (for future compatibility) */
+  background-clip: text;
+
+  /* Vendor prefix (for Chrome, Safari, Edge) */
+  -webkit-background-clip: text;
+
+  /* Required to show gradient text */
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.hero-text {
+  color: var(--muted);
+  max-width: 600px;
+  margin: auto;
+}
+
+/* ================= MAIN ================= */
+.main-content {
+  padding-bottom: 80px;
+}
+
+/* ================= CARD ================= */
+.service-card {
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: #ffffff;
+  box-shadow: var(--shadow-sm);
+  transition: 0.3s;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ================= TEXT ================= */
+.text-muted-custom {
+  color: var(--muted);
+}
+
+/* ================= BUTTONS ================= */
+.btn {
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.btn-custom {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.25);
+}
+
+.btn-custom:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.btn-login {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+}
+
+.btn-login:hover {
+  background: var(--primary-dark);
+}
+
+.btn-outline-danger {
+  border-radius: 999px;
+}
+
+/* ================= MODAL ================= */
+.modal-surface {
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-md);
+}
+
+.modal-title {
+  font-weight: 700;
+}
+
+/* ================= INPUT ================= */
+.form-control {
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+}
+
+.form-control:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.2rem rgba(79, 70, 229, 0.15);
+}
+
+/* ================= FOOTER ================= */
+/* ================= FOOTER PREMIUM ================= */
+#foot {
+  background: linear-gradient(180deg, var(--bg-soft), var(--bg-soft-2));
+  border-top: 1px solid var(--line);
+}
+
+#foot h5 {
+  font-weight: 700;
+  color: var(--text);
+}
+
+#foot p,
+#foot a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+#foot a:hover {
+  color: var(--primary);
+}
+
+.footer-social-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+#foot hr {
+  border-color: var(--line);
+}
+
+/* SOCIAL ICONS */
+.social-icons a {
+  height: 38px;
+  width: 38px;
+  border-radius: 50%;
+  border: 1px solid #cbd5e1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #334155;
+  background: #ffffff;
+  transition: 0.3s;
+}
+
+.social-icons a:hover {
+  transform: translateY(-2px);
+  background: #eef2ff;
+  color: var(--primary);
+  border-color: #a5b4fc;
+}
+
+/* ================= EMPTY STATE ================= */
+.text-center p {
+  font-size: 1rem;
+  color: var(--muted);
+}
+.status-badge {
+  padding: 6px 14px;
+  font-size: 13px;
+  border-radius: 20px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+/* Pending */
+.status-badge.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+/* Accepted */
+.status-badge.accepted {
+  background: #d4edda;
+  color: #155724;
+}
+
+/* Rejected */
+.status-badge.rejected {
+  background: #f8d7da;
+  color: #721c24;
+}

@@ -1,0 +1,171 @@
+/* Page Background */
+.page-shell {
+  padding: 40px 0;
+  background:
+    radial-gradient(circle at 12% 10%, rgba(79, 70, 229, 0.08), transparent 32%),
+    radial-gradient(circle at 88% 14%, rgba(249, 115, 22, 0.07), transparent 28%),
+    linear-gradient(160deg, #ffffff 0%, #f8faff 42%, #ffffff 100%);
+  min-height: 100vh;
+}
+
+/* Card Styling */
+.profile-surface {
+  background: #ffffff;
+  border: 1px solid #dbe3ef;
+  border-radius: 18px;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.1);
+  backdrop-filter: blur(8px);
+}
+
+/* Section Headings */
+.section-head {
+  font-weight: 800;
+  font-size: 1.25rem;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #0f172a;
+}
+
+.section-head i {
+  color: #4f46e5;
+}
+
+/* Divider */
+.section-divider {
+  height: 1px;
+  margin: 28px 0;
+  background: linear-gradient(90deg, transparent, rgba(148,163,184,0.35), transparent);
+}
+
+/* Form Controls */
+.form-control,
+.form-select,
+textarea {
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+  padding: 10px 12px;
+  transition: 0.2s ease;
+}
+
+.form-control:focus,
+.form-select:focus,
+textarea:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 0.22rem rgba(79, 70, 229, 0.14);
+}
+
+/* Labels */
+.form-label {
+  font-weight: 600;
+  color: #64748b;
+}
+
+/* Buttons (match index.css) */
+.btn-custom {
+  border-radius: 999px;
+  background: #4f46e5;
+  border: 1px solid #4f46e5;
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 18px;
+  box-shadow: 0 8px 20px rgba(79,70,229,0.22);
+  transition: 0.2s ease;
+}
+
+.btn-custom:hover {
+  background: #4338ca;
+  border-color: #4338ca;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(67,56,202,0.3);
+}
+
+/* Secondary buttons */
+.btn-outline-soft {
+  border-radius: 999px;
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  color: #334155;
+  padding: 10px 18px;
+  font-weight: 600;
+}
+
+.btn-outline-soft:hover {
+  background: #eef2ff;
+  border-color: #a5b4fc;
+}
+
+/* Header text */
+.text-custom {
+  color: #0f172a;
+  font-weight: 800;
+}
+
+.text-secondary-custom {
+  color: #64748b;
+}
+
+/* Fetch section */
+.form-header {
+  background: #f8faff;
+  border: 1px solid #dbe3ef;
+  padding: 16px;
+  border-radius: 14px;
+}
+
+/* Alert */
+.alert-soft {
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+  color: #3730a3;
+  border-radius: 12px;
+}
+
+/* Image preview */
+#prev {
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  padding: 4px;
+}
+
+/* =========================
+   EVENT POSTER PREVIEW (DESIGNER STYLE)
+========================= */
+
+.preview-box {
+  width: 180px;
+  height: 180px;
+  border-radius: 16px;
+  border: 2px dashed #cbd5e1;
+  background: #f8faff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+  overflow: hidden;
+  position: relative;
+  transition: 0.25s ease;
+}
+
+.preview-box:hover {
+  border-color: #4f46e5;
+  background: #eef2ff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(79, 70, 229, 0.12);
+}
+
+.preview-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+}
+
+/* placeholder text */
+.preview-text {
+  position: absolute;
+  font-size: 0.85rem;
+  color: #64748b;
+  margin: 0;
+}
