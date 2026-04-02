@@ -456,36 +456,45 @@ app.get("/fetch-events", function (req, resp) {
     });
   });
 });
-//----- musician apply k liye
 app.post("/apply-event", function (req, resp) {
   updateEventStatus(function () {
     const { event_id, musician_email } = req.body;
-    // 1. Check event
+    // 1. CHECK PROFILE FIRST
+    mysqlServer.query("select * from musician_profile where email=?",
+      [musician_email],
+      function (err, profileResult) {
+        if (err) return resp.send("Server Error");
+        if (profileResult.length === 0) {
+          return resp.send("PROFILE_INCOMPLETE");
+        }
+    // 2. Check event
     mysqlServer.query("select event_status, posted_by from events where event_id=?",
       [event_id],
-      function (err, eventResult) {
-        if (err) return resp.send("Server Error");
-        if (eventResult.length === 0) {
-          return resp.send("Event not found");
-        }
-        if (eventResult[0].event_status !== "Active") {
-          return resp.send("Event is no longer available");
-        }
-        const venue_email = eventResult[0].posted_by;
-        // 2. Check duplicate application
-        mysqlServer.query("select * from applications where event_id=? and musician_email=?",
-          [event_id, musician_email],
-          function (err, existingResult) {
+          function (err, eventResult) {
             if (err) return resp.send("Server Error");
-            if (existingResult.length > 0) {
-              return resp.send("You have already applied for this event");
+            if (eventResult.length === 0) {
+              return resp.send("Event not found");
             }
-            // 3. Insert application
-            mysqlServer.query("insert into applications (event_id, musician_email, venue_email) values (?, ?, ?)",
-              [event_id, musician_email, venue_email],
-              function (err) {
+            if (eventResult[0].event_status !== "Active") {
+              return resp.send("Event is no longer available");
+            }
+            const venue_email = eventResult[0].posted_by;
+    // 3. Check duplicate application
+    mysqlServer.query("select * from applications where event_id=? and musician_email=?",
+      [event_id, musician_email],
+              function (err, existingResult) {
                 if (err) return resp.send("Server Error");
-                return resp.send("Applied Successfully!");
+                if (existingResult.length > 0) {
+                  return resp.send("You have already applied for this event");
+                }
+    // 4. Insert application
+    mysqlServer.query("insert into applications (event_id, musician_email, venue_email) values (?, ?, ?)",
+      [event_id, musician_email, venue_email],
+                  function (err) {
+                    if (err) return resp.send("Server Error");
+                    return resp.send("Applied Successfully!");
+                  }
+                );
               }
             );
           }
