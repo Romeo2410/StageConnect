@@ -107,7 +107,8 @@ app.post("/create-event", async function (req, resp) {
       [posted_by, title, type, date, time, genre, performers, budget, status, venue,
         city, address, info, filename], function (err) {
           if (err == null) {
-            resp.send("Event Created Successfully");
+           resp.send('<script>alert("Event Created Successfully");</script>');
+           resp.redirect("/dash-Venue");
           } else {
             console.log(err);
             resp.send(err.message);
@@ -150,7 +151,8 @@ app.post("/update-event", async function (req, resp) {
       [title, type, date, time, genre, performers, budget, status, venue, city, address,
         info, filename, id], function (err) {
           if (err == null) {
-            resp.send("Event Updated Successfully");
+             resp.send('<script>alert("Event Updated Successfully");</script>');
+           resp.redirect("/dash-Venue");
           } else {
             console.log(err);
             resp.send(err.message);
@@ -340,7 +342,8 @@ app.post("/save-musician-profile", async function (req, resp) {
       [email, stage_name, genre, experience, bio, phone, city, state, fee, available, youtube, filename],
       function (err) {
         if (err == null) {
-          resp.send("Profile Saved Successfully");
+           resp.send('<script>alert("Profile Saved Successfully");</script>');
+           resp.redirect("/profile-Venue");
         } else {
           console.log(err);
           resp.send(err.message);
@@ -392,7 +395,8 @@ app.post("/update-musician-profile", async function (req, resp) {
         filename, email],
       function (err) {
         if (err == null) {
-          resp.send("Profile Updated Successfully");
+           resp.send('<script>alert("Profile Updated Successfully");</script>');
+           resp.redirect("/profile-Venue");
         } else {
           console.log(err);
           resp.send(err.message);
