@@ -155,6 +155,31 @@
         </div>
       </div>
     </section>
+    <section class="pb-5">
+      <div class="container">
+        <div class="feedback-form p-4 rounded-4">
+          <h4 class="mb-3 text-custom">Give Feedback</h4>
+    
+          <form id="dashFeedbackFormM">
+    
+            <div class="mb-3">
+              <label class="form-label">Contact</label>
+              <input type="text" class="form-control" id="dashContactM" required>
+            </div>
+    
+            <div class="mb-3">
+              <label class="form-label">Message</label>
+              <textarea class="form-control" rows="5" id="dashMessageM" required></textarea>
+            </div>
+    
+            <button class="btn btn-custom" id="dashFeedBtnM">
+              Submit Feedback
+            </button>
+    
+          </form>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- Footer -->
@@ -211,6 +236,49 @@
         localStorage.removeItem("activeUserM");
 
         location.href = "index.html";
+      });
+
+      $("#dashFeedBtnM").click(function (e) {
+        e.preventDefault();
+
+        if (!user || !user.name) {
+          alert("Session expired. Please login again.");
+          location.href = "index.html";
+          return;
+        }
+
+        const name = user.name;
+        const contact = $("#dashContactM").val().trim();
+        const feedback = $("#dashMessageM").val().trim();
+        const role = "Musician";
+
+        if (contact === "" || feedback === "") {
+          alert("Please fill all fields");
+          return;
+        }
+
+        $("#dashFeedBtnM").prop("disabled", true);
+
+        $.ajax({
+          type: "post",
+          url: "/SendFeedback",
+          data: {
+            feedname: name,
+            Cont: contact,
+            Feedback: feedback,
+            feedbackRole: role
+          }
+        })
+          .done(function (res) {
+            alert(res);
+            $("#dashFeedbackFormM")[0].reset();
+          })
+          .fail(function () {
+            alert("Server error");
+          })
+          .always(function () {
+            $("#dashFeedBtnM").prop("disabled", false);
+          });
       });
 
     });
