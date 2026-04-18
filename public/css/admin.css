@@ -13,7 +13,7 @@ body {
 .sc-navbar {
   background: #0f172a;
   padding: 8px 0;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 
@@ -43,7 +43,7 @@ body {
 }
 
 .nav-home:hover {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   color: #fff;
 }
 
@@ -76,20 +76,20 @@ body {
 }
 
 /* =========================
-   USER CARD (IMPROVED)
+   USER CARD
 ========================= */
 .user-card {
   background: #ffffff;
   border-radius: 18px;
   padding: 18px;
   border: 1px solid #e5e7eb;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
   transition: 0.3s ease;
 }
 
 .user-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
 }
 
 /* text inside card */
@@ -130,22 +130,31 @@ body {
   width: 100%;
 }
 
-.btn-block {
+.btn-delete {
   background: #e74c3c;
   color: white;
 }
 
-.btn-block:hover {
+.btn-delete:hover {
   background: #c0392b;
 }
 
-.btn-resume {
+.btn-block {
   background: #3498db;
   color: white;
 }
 
-.btn-resume:hover {
+.btn-block:hover {
   background: #1f6fa5;
+}
+
+.btn-resume {
+  background: #2ecc71;
+  color: white;
+}
+
+.btn-resume:hover {
+  background: #27ae60;
 }
 
 /* spacing inside buttons row */
