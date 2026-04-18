@@ -749,3 +749,16 @@ app.get("/get-all-feedbacks", function (req, resp) {
       }
     });
 });
+// DELETE testimonial
+app.get("/delete-feedback", function (req, res) {
+  let id = req.query.id;
+
+  mysqlServer.query("delete from feedback where id = ?", [id], function (err) {
+    if (err) {
+      console.log(err);
+      res.send("Error deleting testimonial");
+    } else {
+      res.send("Testimonial deleted successfully");
+    }
+  });
+});

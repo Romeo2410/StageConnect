@@ -97,6 +97,10 @@
               Show
             </button>
 
+            <button class="btn btn-danger" ng-click="deleteTestimonial(t.id)">
+              Delete
+            </button>
+
           </div>
 
         </div>
@@ -117,74 +121,91 @@
     </div>
   </footer>
 
-<script>
-  var app = angular.module("adminApp", []);
+  <script>
+    var app = angular.module("adminApp", []);
 
-  app.controller("adminCtrl", function ($scope, $http) {
+    app.controller("adminCtrl", function ($scope, $http) {
 
-    $scope.users = [];
-    $scope.testimonials = [];
+      $scope.users = [];
+      $scope.testimonials = [];
 
-    // Load Users
-    $scope.loadUsers = function () {
-      $http.get("/all-records")
-        .then(function (res) {
-          $scope.users = res.data;
-        });
-    };
+      // Load Users
+      $scope.loadUsers = function () {
+        $http.get("/all-records")
+          .then(function (res) {
+            $scope.users = res.data;
+          });
+      };
 
-    // Load Testimonials
-    $scope.loadTestimonials = function () {
-      $http.get("/get-all-feedbacks")
-        .then(function (res) {
-          $scope.testimonials = res.data;
-        });
-    };
+      // Load Testimonials
+      $scope.loadTestimonials = function () {
+        $http.get("/get-all-feedbacks")
+          .then(function (res) {
+            $scope.testimonials = res.data;
+          });
+      };
 
-    // Hide testimonial
-    $scope.hideTestimonial = function (id) {
-      $http.get("/hide-feedback?id=" + id)
-        .then(function (res) {
-          alert(res.data);
-          $scope.loadTestimonials();
-        });
-    };
+      // Hide testimonial
+      $scope.hideTestimonial = function (id) {
+        $http.get("/hide-feedback?id=" + id)
+          .then(function (res) {
+            alert(res.data);
+            $scope.loadTestimonials();
+          });
+      };
 
-    // Show testimonial
-    $scope.showTestimonial = function (id) {
-      $http.get("/show-feedback?id=" + id)
-        .then(function (res) {
-          alert(res.data);
-          $scope.loadTestimonials();
-        });
-    };
+      // Show testimonial
+      $scope.showTestimonial = function (id) {
+        $http.get("/show-feedback?id=" + id)
+          .then(function (res) {
+            alert(res.data);
+            $scope.loadTestimonials();
+          });
+      };
 
-    // BLOCK user
-    $scope.blockUser = function (email) {
-      $http.get("/update-user-status?email=" + email + "&status=0")
-        .then(function (res) {
-          alert(res.data);
-          $scope.loadUsers();
-        })
-        .catch(function () {
-          alert("Error blocking user");
-        });
-    };
+      // BLOCK user
+      $scope.blockUser = function (email) {
+        $http.get("/update-user-status?email=" + email + "&status=0")
+          .then(function (res) {
+            alert(res.data);
+            $scope.loadUsers();
+          })
+          .catch(function () {
+            alert("Error blocking user");
+          });
+      };
 
-    // RESUME user
-    $scope.resumeUser = function (email) {
-      $http.get("/update-user-status?email=" + email + "&status=1")
-        .then(function (res) {
-          alert(res.data);
-          $scope.loadUsers();
-        })
-        .catch(function () {
-          alert("Error resuming user");
-        });
-    };
+      // RESUME user
+      $scope.resumeUser = function (email) {
+        $http.get("/update-user-status?email=" + email + "&status=1")
+          .then(function (res) {
+            alert(res.data);
+            $scope.loadUsers();
+          })
+          .catch(function () {
+            alert("Error resuming user");
+          });
+      };
 
-  });
-</script>
+      // DELETE testimonial
+      $scope.deleteTestimonial = function (id) {
+
+        if (confirm("Are you sure you want to delete this testimonial?")) {
+
+          $http.get("/delete-feedback?id=" + id)
+            .then(function (res) {
+              alert(res.data);
+              $scope.loadTestimonials();
+            })
+            .catch(function () {
+              alert("Error deleting testimonial");
+            });
+
+        }
+      };
+
+    });
+  </script>
 
 </body>
 
