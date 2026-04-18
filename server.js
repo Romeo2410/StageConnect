@@ -261,7 +261,7 @@ app.post("/SendFeedback", function (req, resp) {
     const role = req.body.feedbackRole || "Visitor";
     console.log("Feedback received:", Fname, role, num, feed);
     //---insert into database
-    mysqlServer.query("insert into feedback (name, role, contact, message) values (?, ?, ?, ?)",
+    mysqlServer.query("insert into feedback (name, role, contact, message, status) values (?, ?, ?, ?,0)",
       [Fname, role, num, feed],
       function (err) {
         if (err) {

@@ -145,6 +145,31 @@
         </div>
       </div>
     </section>
+    <section class="pb-5">
+      <div class="container">
+        <div class="feedback-form p-4 rounded-4">
+          <h4 class="mb-3 text-custom">Give Feedback</h4>
+    
+          <form id="dashFeedbackForm">
+    
+            <div class="mb-3">
+              <label class="form-label">Contact</label>
+              <input type="text" class="form-control" id="dashContact" required>
+            </div>
+    
+            <div class="mb-3">
+              <label class="form-label">Message</label>
+              <textarea class="form-control" rows="5" id="dashMessage" required></textarea>
+            </div>
+    
+            <button class="btn btn-custom" id="dashFeedBtn">
+              Submit Feedback
+            </button>
+    
+          </form>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer id="foot">
@@ -206,6 +231,49 @@
       $("#LogoutV").trigger("click");
     });
 
+    $("#dashFeedBtn").click(function (e) {
+      e.preventDefault();
+
+      if (!user) {
+        alert("Session expired. Please login again.");
+        location.href = "index.html";
+        return;
+      }
+
+      const name = user.name;
+      const contact = $("#dashContact").val().trim();
+      const feedback = $("#dashMessage").val().trim();
+      const role = "Venue";
+
+      if (contact === "" || feedback === "") {
+        alert("Please fill all fields");
+        return;
+      }
+
+      // Disable button to prevent spam click
+      $("#dashFeedBtn").prop("disabled", true);
+
+      $.ajax({
+        type: "post",
+        url: "/SendFeedback",
+        data: {
+          feedname: name,
+          Cont: contact,
+          Feedback: feedback,
+          feedbackRole: role
+        }
+      })
+        .done(function (res) {
+          alert(res);
+          $("#dashFeedbackForm")[0].reset();
+        })
+        .fail(function () {
+          alert("Server error");
+        })
+        .always(function () {
+          $("#dashFeedBtn").prop("disabled", false);
+        });
+    });
   });
 </script>
 
