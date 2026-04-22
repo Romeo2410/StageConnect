@@ -4,13 +4,22 @@ const path = require("path");
 const mysql = require("mysql2");
 const fileUpload = require("express-fileupload");
 const basicAuth = require("express-basic-auth");
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 require("dotenv").config();
-app.use(["/admin", "/api/admin"],
-  basicAuth({
-    users: { [process.env.ADMIN_USER]: process.env.ADMIN_PASS },
-    challenge: true
-  })
-);
+app.post("/admin-login", (req, res) => {
+  const { username, password } = req.body;
+
+  if (
+    username === process.env.ADMIN_USER &&
+    password === process.env.ADMIN_PASS
+  ) {
+    res.json({ success: true });
+  } else {
+    res.json({ success: false });
+  }
+  console.log(req.body);
+});
 const PORT = process.env.PORT;
 // ---------------------- Start Server ----------------------
 app.listen(PORT, function () {
@@ -18,8 +27,6 @@ app.listen(PORT, function () {
 });
 // ---------------------- Middleware ----------------------
 app.use(express.static(path.join(__dirname, "public")));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload());
 //-------------Cloudinary-------------------------------
 var cloudinary = require("cloudinary").v2;
@@ -59,8 +66,8 @@ app.get("/profile-Musician", function (req, res) {
   res.sendFile(path.join(__dirname, "public", "profile-Musician.html"));
 });
 
-app.get("/admin", function (req, res) {
-  res.sendFile(path.join(__dirname, "public", "admin.html"));
+app.get("/admin", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "admin-login.html"));
 });
 function updateEventStatus(callback) {
   mysqlServer.query("update events set event_status='Completed' where TIMESTAMP(event_date, event_time) < NOW()",
