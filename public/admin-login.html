@@ -202,7 +202,7 @@ body {
 <form ng-submit="login()">
 
 <div class="form-floating mb-3">
-  <input type="text" class="form-control" ng-model="user.username" placeholder="Username" required>
+  <input type="text" class="form-control" ng-model="user.username" readonly>
   <label>Username</label>
 </div>
 
@@ -254,11 +254,13 @@ var app = angular.module("loginApp", []);
 app.controller("loginCtrl", function ($scope, $http) {
 
   $scope.user = {};
-  $scope.showPassword = false; // ✅ important
+  $scope.showPassword = false;
   $scope.loading = false;
   $scope.progress = 0;
-
-  // ✅ FIXED toggle
+    $http.get("/admin-user")
+    .then(function (res) {
+      $scope.user.username = res.data.username;
+    });
   $scope.togglePassword = function () {
     $scope.showPassword = !$scope.showPassword;
   };

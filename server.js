@@ -20,6 +20,11 @@ app.post("/admin-login", (req, res) => {
   }
   console.log(req.body);
 });
+app.get("/admin-user", (req, res) => {
+  res.json({ 
+    username: process.env.ADMIN_USER
+   });
+});
 const PORT = process.env.PORT;
 // ---------------------- Start Server ----------------------
 app.listen(PORT, function () {
