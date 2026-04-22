@@ -21,7 +21,7 @@ app.post("/admin-login", (req, res) => {
   console.log(req.body);
 });
 app.get("/admin-user", (req, res) => {
-  res.json({ 
+  res.json({
     username: process.env.ADMIN_USER
    });
 });

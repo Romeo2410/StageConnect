@@ -412,7 +412,8 @@
               </div>
               <div class="mb-3">
                 <label for="Cont" class="form-label">Contact</label>
-                <input type="text" class="form-control" id="Cont" name="Cont" required>
+                <input type="text" class="form-control" id="Cont" name="Cont" maxlength="10" inputmode="numeric"
+                  required>
               </div>
               <div class="mb-3">
                 <label for="floatingTextarea" class="form-label">Message</label>
@@ -496,6 +497,42 @@
       <p class="text-center mb-0">© 2026 StageConnect</p>
     </div>
   </footer>
+  <!-- Chat Button -->
+  <button class="btn btn-primary position-fixed" id="chatToggle">
+    Help
+  </button>
+
+  <!-- Chat Box -->
+  <div class="card position-fixed shadow" id="chatBox">
+
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <strong>StageConnect Help Desk</strong>
+      <button class="btn-close" id="closeChat"></button>
+    </div>
+
+    <div class="card-body" id="chatBody" style="height:300px; overflow-y:auto; position:relative;">
+      <div id="chatMessages"></div>
+
+      <button id="mainMenuBtn" class="btn btn-sm btn-secondary"
+        style="position: sticky; bottom: 10px; float: right; margin-top: 10px;">
+        ☰ Menu
+      </button>
+
+      <button id="scrollBottomBtn" class="btn btn-sm btn-primary"
+        style="position: sticky; bottom: 50px; float: right; display:none;">
+        ↓ Latest
+      </button>
+    </div>
+
+    <div class="card-footer">
+      <form id="chatForm" class="d-flex">
+        <input type="text" class="form-control me-2" id="chatInput" placeholder="Say Hello">
+        <button class="btn btn-primary">
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </form>
+    </div>
+  </div>
   <script>
     let goToTopBtn = null;
 
@@ -513,6 +550,9 @@
     };
     goToTopBtn = document.getElementById("goToTopBtn");
     $(document).ready(function () {
+      setTimeout(() => {
+        addMessage("Welcome to StageConnect! Type '<b>Hello, Hi, Hey</b>' or Click '<b>Menu</b>' to start.", "bot");
+      }, 800);
       // Password visibility toggles
       $("#eye").click(function () {
         const pwd = $("#txtPwd");
@@ -640,16 +680,25 @@
       });
 
       // Feedback AJAX
+       $("#Cont").on("input", function () {
+          this.value = this.value.replace(/[^0-9]/g, "").slice(0, 10);
+        });
       $("#FeedBtn").click(function (e) {
         e.preventDefault();
 
-        var name = $("#feedname").val();
-        var contact = $("#Cont").val();
-        var feedback = $("#floatingTextarea").val();
+        var name = $("#feedname").val().trim();
+        var contact = $("#Cont").val().trim();
+        var feedback = $("#floatingTextarea").val().trim();
         var role = $("#feedbackRole").val();
 
         if (name === "" || contact === "" || feedback === "" || !role) {
           alert("Please fill in all fields.");
+          return false;
+        }
+        var contactPattern = /^[0-9]{10}$/;
+
+        if (!contactPattern.test(contact)) {
+          alert("Contact number must be exactly 10 digits .");
           return false;
         }
 
@@ -738,10 +787,201 @@
       });
 
     });
+    // Toggle Chat
+    $("#chatToggle").click(function () {
+      $("#chatBox").toggle();
+    });
+
+    $("#closeChat").click(function () {
+      $("#chatBox").hide();
+    });
+
+    // Handle option clicks
+    $(document).on("click", ".option", function () {
+      let id = $(this).data("id");
+      let text = $(this).text();
+
+      addMessage(text, "user");
+
+      showTyping();
+
+      setTimeout(() => {
+        removeTyping();
+
+        let response = "";
+
+        if (id == 1) {
+          response = "Click Signup and choose Musician to get started.";
+        }
+        else if (id == 2) {
+          response = "Click Signup and then Register as Venue to post events.";
+        }
+        else if (id == 3) {
+          response = "Login as a Musician to explore events.";
+        }
+        else if (id == 4) {
+          response = "Post events from your Venue dashboard.";
+        }
+        else if (id == 5) {
+          response = showContactDetails();
+        }
+        else if (id == 6) {
+          response = openWhatsApp();
+        }
+
+        addMessage(response, "bot");
+
+      }, 1000);
+    });
+
+    // Handle text input
+    $("#chatForm").submit(function (e) {
+      e.preventDefault();
+
+      let msg = $("#chatInput").val().trim().toLowerCase();
+      if (!msg) return;
+
+      addMessage(msg, "user");
+      $("#chatInput").val("");
+
+      showTyping();
+
+      setTimeout(() => {
+        removeTyping();
+
+        let response = "";
+
+        // KEYWORD DETECTION
+        if (msg.includes("hello") || msg.includes("hi") || msg.includes("hey")) {
+          addMessage("Select an Option:", "bot");
+
+          setTimeout(() => {
+            addMessage(showMainMenuButtons(), "bot");
+          }, 500);
+
+          return;
+        }
+        else if (msg.includes("musician") || msg.includes("join")) {
+          response = "You can join as a musician using the Signup button.";
+        }
+        else if (msg.includes("venue") || msg.includes("register")) {
+          response = "Register as a venue to post events.";
+        }
+        else if (msg.includes("event") || msg.includes("gig")) {
+          response = "Login to explore available events.";
+        }
+        else if (msg.includes("post")) {
+          response = "Venues can post events from dashboard.";
+        }
+        else if (msg.includes("contact") || msg.includes("phone") || msg.includes("email")) {
+          response = showContactDetails();
+        }
+        else if (msg.includes("whatsapp") || msg.includes("chat")) {
+          response = openWhatsApp(msg);
+        }
+
+        //  UNKNOWN / SPAM → FALLBACK
+        else {
+          addMessage(" I'm not sure about that.", "bot");
+
+          setTimeout(() => {
+            addMessage("You can contact us directly 👇", "bot");
+            addMessage(showContactDetails(), "bot");
+          }, 600);
+          return;
+        }
+        addMessage(response, "bot");
+
+      }, 800);
+    });
+
+    // Add message to chat
+    function addMessage(text, type) {
+      let rowClass = type === "user" ? "chat-row user" : "chat-row bot";
+      let msgClass = type === "user" ? "chat-msg chat-user" : "chat-msg chat-bot";
+
+      $("#chatMessages").append(`
+    <div class="${rowClass}">
+      <div class="${msgClass}">
+        ${text}
+      </div>
+    </div>
+  `);
+
+      scrollToBottom();
+    }
+    $("#chatBody").on("scroll", function () {
+      let el = this;
+
+      let isAtBottom = el.scrollHeight - el.scrollTop - el.clientHeight < 50;
+
+      if (!isAtBottom) {
+        $("#scrollBottomBtn").fadeIn();
+      } else {
+        $("#scrollBottomBtn").fadeOut();
+      }
+    });
+    // Only show contact details
+    function showContactDetails() {
+      return `
+    📞 Phone: <a href="tel:6239110015">6239110015</a><br>
+    📧 Email: <a href="mailto:gurromeo30@gmail.com">gurromeo30@gmail.com</a><br>
+    📍 Bathinda, Punjab
+  `;
+    }
+
+    // Only open WhatsApp
+    function openWhatsApp(msg = "Hello, I need help from StageConnect.") {
+      let phone = "916239110015";
+      let message = encodeURIComponent(msg);
+
+      window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+
+      return `
+    Opening WhatsApp... 💬<br>
+    <a href="https://wa.me/${phone}?text=${message}" target="_blank">Click if not opened</a>
+  `;
+    }
+    function showTyping() {
+      $("#chatMessages").append(`
+  <div class="text-start mb-2 typing">
+    <span class="p-2 rounded bg-light">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </span>
+  </div>
+`);
+
+      $("#chatBody").scrollTop($("#chatBody")[0].scrollHeight);
+    }
+
+    function removeTyping() {
+      $(".typing").remove();
+    }
+    function showMainMenuButtons() {
+      return `
+  <div class="d-grid gap-2">
+    <button class="btn btn-outline-primary option" data-id="1">Join as Musician</button>
+    <button class="btn btn-outline-primary option" data-id="2">Join as Venue</button>
+    <button class="btn btn-outline-primary option" data-id="3">Find Events</button>
+    <button class="btn btn-outline-primary option" data-id="4">Post Event</button>
+    <button class="btn btn-outline-primary option" data-id="5">Contact Us</button>
+    <button class="btn btn-outline-primary option" data-id="6">Chat with Us</button>
+  </div>
+  `;
+    }
+    function scrollToBottom() {
+      $("#chatBody").scrollTop($("#chatBody")[0].scrollHeight);
+    }
+    $("#mainMenuBtn").click(function () {
+      addMessage(showMainMenuButtons(), "bot");
+      scrollToBottom();
+    });
+    $("#scrollBottomBtn").click(function () {
+      scrollToBottom();
+    });
   </script>
-  <a href="https://wa.me/916239110015" target="_blank" id="wa-btn">
-    <i class="fa-brands fa-square-whatsapp" style="color: rgb(99, 230, 190);"></i>
-  </a>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
