@@ -41,6 +41,9 @@
           <li class="nav-item">
             <a class="nav-link" href="musician-profile.html">Profile</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#feedbackSectionM">Feedback</a>
+          </li>
 
           <li class="nav-item">
             <a class="nav-link" href="#" id="LogoutM">Logout</a>
@@ -155,29 +158,48 @@
         </div>
       </div>
     </section>
-    <section class="pb-5">
+    <section class="pb-5" id="feedbackSectionM">
       <div class="container">
-        <div class="feedback-form p-4 rounded-4">
-          <h4 class="mb-3 text-custom">Give Feedback</h4>
-    
+
+        <div class="feedback-form-enhanced p-4 p-md-5 rounded-4">
+
+          <div class="text-center mb-4">
+            <h3 class="text-custom mb-1">Share Your Experience</h3>
+            <p class="text-secondary-custom mb-0">
+              Help us improve opportunities for musicians
+            </p>
+          </div>
+
           <form id="dashFeedbackFormM">
-    
-            <div class="mb-3">
-              <label class="form-label">Contact</label>
-              <input type="text" class="form-control" id="dashContactM" required>
+
+            <div class="row g-3">
+
+              <div class="col-md-6">
+                <label class="form-label">Contact</label>
+                <div class="input-group custom-input">
+                  <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                  <input type="text" class="form-control" id="dashContactM" placeholder="Phone" required>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <label class="form-label">Your Message</label>
+                <textarea class="form-control custom-textarea" rows="5" id="dashMessageM"
+                  placeholder="Write your feedback..." required></textarea>
+              </div>
+
+              <div class="col-12 text-end">
+                <button class="btn btn-custom px-4" id="dashFeedBtnM">
+                  <i class="fa fa-paper-plane me-2"></i> Submit Feedback
+                </button>
+              </div>
+
             </div>
-    
-            <div class="mb-3">
-              <label class="form-label">Message</label>
-              <textarea class="form-control" rows="5" id="dashMessageM" required></textarea>
-            </div>
-    
-            <button class="btn btn-custom" id="dashFeedBtnM">
-              Submit Feedback
-            </button>
-    
+
           </form>
+
         </div>
+
       </div>
     </section>
   </main>

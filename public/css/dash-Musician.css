@@ -201,3 +201,58 @@ hr {
         height: 140px;
     }
 }
+/* ================= FEEDBACK FORM UPGRADE ================= */
+
+.feedback-form-enhanced {
+    background: var(--bg-light);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-md);
+    border-radius: var(--border-radius-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+/* top gradient strip */
+.feedback-form-enhanced::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 6px;
+    width: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+}
+
+/* input group styling */
+.custom-input .input-group-text {
+    background: #f3f4f6;
+    border: 1px solid var(--line);
+    color: var(--primary);
+}
+
+.custom-input .form-control {
+    border-left: none;
+}
+
+.custom-input .form-control:focus {
+    box-shadow: none;
+    border-color: var(--primary);
+}
+
+/* textarea */
+.custom-textarea {
+    border-radius: 12px;
+    padding: 12px;
+    border: 1px solid var(--line);
+    transition: 0.2s;
+}
+
+.custom-textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+/* heading */
+.feedback-form-enhanced h3 {
+    font-weight: 700;
+}

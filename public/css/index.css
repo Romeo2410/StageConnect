@@ -971,13 +971,13 @@ section::after {
 }
 
 #chatToggle {
-  border-radius: 50%;
+  border-radius: 45%;
   position: fixed;
   bottom: 20px;
   left: 20px;
-  width: 80px;
+  width: 100px;
   height: 60px;
-  font-size: 20px;
+  font-size: 18px;
   background: linear-gradient(135deg, var(--primary), #2563eb);
   border: none;
   box-shadow: 0 10px 25px rgba(79, 70, 229, 0.4);

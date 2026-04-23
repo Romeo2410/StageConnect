@@ -419,7 +419,7 @@
                 <label for="floatingTextarea" class="form-label">Message</label>
                 <textarea class="form-control" rows="6" id="floatingTextarea" name="Feedback" required></textarea>
               </div>
-              <button type="submit" class="btn btn-custom" id="FeedBtn">Send Feedback</button>
+              <button type="submit" class="btn btn-custom" id="FeedBtn"><i class="fa fa-paper-plane me-2"></i> Submit Feedback</button>
             </form>
           </div>
         </div>
@@ -499,7 +499,7 @@
   </footer>
   <!-- Chat Button -->
   <button class="btn btn-primary position-fixed" id="chatToggle">
-    Help
+    <i class="fa-solid fa-robot me-2"></i>Chat
   </button>
 
   <!-- Chat Box -->
@@ -680,9 +680,9 @@
       });
 
       // Feedback AJAX
-       $("#Cont").on("input", function () {
-          this.value = this.value.replace(/[^0-9]/g, "").slice(0, 10);
-        });
+      $("#Cont").on("input", function () {
+        this.value = this.value.replace(/[^0-9]/g, "").slice(0, 10);
+      });
       $("#FeedBtn").click(function (e) {
         e.preventDefault();
 
@@ -879,8 +879,30 @@
         else if (msg.includes("whatsapp") || msg.includes("chat")) {
           response = openWhatsApp(msg);
         }
+        else if (msg.includes("rupak gur") || msg.includes("who is rupak gur") || msg.includes("about rupak gur") || msg.includes("rupak") || msg.includes("gur")) {
+          response = `
+          <b>Rupak Gur is a Certified Full Stack Developer and the creator of the StageConnect platform. He is currently a final-year Master’s student at Maharaja Ranjit Singh Punjab Technical University.</b>
+          He has a strong expertise in <b>backend development, authentication systems, and scalable full-stack architecture</b>, with a focus on building efficient, secure, and user-centric web applications.
+          Through his work on StageConnect, he demonstrates a solid understanding of real-world product development, combining technical proficiency with practical implementation to deliver a complete and functional platform.
+        `;
+        }
+        else if (
+          msg.includes("ok") ||
+          msg.includes("okay") ||
+          msg.includes("thank you") ||
+          msg.includes("thanks") ||
+          msg.includes("thx")
+        ) {
+          addMessage("Always happy to help — see you again", "bot");
 
-        //  UNKNOWN / SPAM → FALLBACK
+          setTimeout(() => {
+            addMessage("If you need anything else, we’re just a message away 👇", "bot");
+            addMessage(showContactDetails(), "bot");
+          }, 600);
+
+          return; 
+        }
+
         else {
           addMessage(" I'm not sure about that.", "bot");
 
