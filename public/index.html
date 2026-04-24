@@ -21,6 +21,17 @@
 </head>
 
 <body>
+<div id="glass-loader">
+  <div class="glass-card">
+    <div class="logo-wrapper">
+      <img src="images/logo.png" class="glass-logo" />
+      <span class="shine"></span>
+    </div>
+    <div class="glass-bar">
+      <div class="glass-progress"></div>
+    </div>
+  </div>
+</div>
   <button id="goToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top">
     <i class="fa-solid fa-arrow-up"></i>
   </button>
@@ -1008,6 +1019,22 @@
       scrollToBottom();
     });
   </script>
+  <script>
+  window.addEventListener("load", function () {
+    const loader = document.getElementById("glass-loader");
+
+    // wait a bit so user sees it
+    setTimeout(() => {
+      loader.style.animation = "slideUpExit 0.7s ease-in forwards";
+
+      // remove after animation
+      setTimeout(() => {
+        loader.style.display = "none";
+      }, 700);
+
+    }, 1200); // hold time before exit
+  });
+</script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
