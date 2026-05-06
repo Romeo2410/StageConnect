@@ -572,7 +572,6 @@ section::after {
 .testimonial-track {
   display: flex;
   gap: 1rem;
-  white-space: nowrap;
   animation: testimonials-scroll 20s linear infinite;
 }
 
